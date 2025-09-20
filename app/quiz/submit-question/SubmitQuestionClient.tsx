@@ -18,18 +18,37 @@ export default function SubmitQuestionClient() {
     answer: "",
   });
 
+  const [success, setSuccess] = useState(false);
+
   const handleAddQuestion = async () => {
+    if (!newQuestion.options.includes(newQuestion.answer)) {
+      alert("Answer must match one of the options!");
+      return;
+    }
+
     const res = await fetch("/api/questions", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newQuestion),
     });
-    const added = await res.json();
-    setNewQuestion({
-      question: "",
-      options: ["", "", "", ""],
-      answer: "",
-    });
+
+    if (res.ok) {
+      // Show success message
+      setSuccess(true);
+
+      // Reset the form
+      setNewQuestion({
+        question: "",
+        options: ["", "", "", ""],
+        answer: "",
+      });
+
+      // Hide message after 3 seconds
+      setTimeout(() => setSuccess(false), 3000);
+    } else {
+      const data = await res.json();
+      alert(data.error || "Failed to submit question.");
+    }
   };
 
   return (
@@ -135,7 +154,7 @@ export default function SubmitQuestionClient() {
 
         <input
           type="text"
-          placeholder="Answer (Should match one of the options)"
+          placeholder="Answer"
           value={newQuestion.answer}
           required
           className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg lg:w-[60%] mx-auto"
@@ -148,7 +167,7 @@ export default function SubmitQuestionClient() {
           type="submit"
           className="text-sm lg:text-lg font-bold border-2 text-orange-300 border-orange-300 hover:text-stone-900 px-4 py-2 rounded-xl hover:bg-orange-300 transition-colors duration-300 cursor-pointer lg:w-[60%] mx-auto"
         >
-          Submit
+          {success ? "Submitted ✓" : "Submit"}
         </button>
       </form>
 
