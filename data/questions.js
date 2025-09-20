@@ -1,5 +1,4 @@
-export let questions = [
-  // Very Easy
+const questions = [
   {
     id: 1,
     question: "What color are bananas when ripe?",
@@ -319,3 +318,5 @@ export let questions = [
     answer: "300,000 km/s",
   },
 ];
+
+module.exports = { questions };

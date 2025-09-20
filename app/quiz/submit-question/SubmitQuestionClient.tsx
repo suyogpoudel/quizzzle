@@ -48,6 +48,7 @@ export default function SubmitQuestionClient() {
           type="text"
           placeholder="Question"
           value={newQuestion.question}
+          required
           className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg lg:w-[60%] mx-auto"
           onChange={(e) =>
             setNewQuestion({ ...newQuestion, question: e.target.value })
@@ -59,6 +60,7 @@ export default function SubmitQuestionClient() {
             type="text"
             placeholder="Option 1"
             value={newQuestion.options[0]}
+            required
             className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg"
             onChange={(e) =>
               setNewQuestion({
@@ -77,6 +79,7 @@ export default function SubmitQuestionClient() {
             type="text"
             placeholder="Option 2"
             value={newQuestion.options[1]}
+            required
             className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg"
             onChange={(e) =>
               setNewQuestion({
@@ -95,6 +98,7 @@ export default function SubmitQuestionClient() {
             type="text"
             placeholder="Option 3"
             value={newQuestion.options[2]}
+            required
             className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg"
             onChange={(e) =>
               setNewQuestion({
@@ -113,6 +117,7 @@ export default function SubmitQuestionClient() {
             type="text"
             placeholder="Option 4"
             value={newQuestion.options[3]}
+            required
             className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg"
             onChange={(e) =>
               setNewQuestion({
@@ -132,6 +137,7 @@ export default function SubmitQuestionClient() {
           type="text"
           placeholder="Answer (Should match one of the options)"
           value={newQuestion.answer}
+          required
           className="lg:text-lg border-2 border-orange-300 px-4 py-2 rounded-lg lg:w-[60%] mx-auto"
           onChange={(e) =>
             setNewQuestion({ ...newQuestion, answer: e.target.value })
